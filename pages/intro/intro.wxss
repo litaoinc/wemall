@@ -1,0 +1,19 @@
+.intro {
+  background-image: url(http://static.open-open.com/lib/uploadImg/20161110/20161110152658_507.jpg);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+}
+.title {
+  font-size: 1.8rem;
+  color: lightskyblue;
+}
+#intro-btn {
+  margin-top: 30%;
+  width: 300rpx;
+  background-color:lightskyblue;
+}

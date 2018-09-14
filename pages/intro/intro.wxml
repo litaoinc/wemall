@@ -1,0 +1,6 @@
+<view class="container">
+  <view class='intro'>
+    <view class='title'>欢迎使用商城</view>
+    <button id='intro-btn' open-type="getUserInfo"        bindgetuserinfo="onGotUserInfo">开始使用</button>
+  </view>
+</view>
