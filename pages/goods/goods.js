@@ -26,12 +26,17 @@ Page({
   },
   getGoodsInfo: function () {
     let that = this;
-    util.request(api.GoodsDetail, { id: that.data.id }).then(function (res) {
-      if (res.errno === 0) {
+    util.request(api.GoodsDetail+that.data.id).then(function (res) {
+      if (res.meta.code === 0) {
+        res.data.images.forEach(function (val, index) {
+          val.path = api.RootUrl + val.path
+        })
+
+        console.error(res.data)
         that.setData({
-          goods: res.data.info,
-          gallery: res.data.gallery,
-          attribute: res.data.attribute,
+          goods: res.data,
+          gallery: res.data.images,
+          attribute: res.data,
           issueList: res.data.issue,
           comment: res.data.comment,
           brand: res.data.brand,
@@ -179,9 +184,9 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
-      id: parseInt(options.id)
-      // id: 1181000
+      id: options.id
     });
+    
     var that = this;
     this.getGoodsInfo();
     util.request(api.CartGoodsCount).then(function (res) {
@@ -262,14 +267,14 @@ Page({
     } else {
 
       //提示选择完整规格
-      if (!this.isCheckedAllSpec()) {
-        wx.showToast({
-          image: '/static/images/icon_error.png',
-          title: '请选择规格',
-          mask: true
-        });
-        return false;
-      }
+      // if (!this.isCheckedAllSpec()) {
+      //   wx.showToast({
+      //     image: '/static/images/icon_error.png',
+      //     title: '请选择规格',
+      //     mask: true
+      //   });
+      //   return false;
+      // }
 
       //根据选中的规格，判断是否有对应的sku信息
       let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey());

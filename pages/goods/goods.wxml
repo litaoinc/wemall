@@ -1,7 +1,7 @@
 <view class="container">
   <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{gallery}}" wx:key="{{item.id}}">
-      <image src="{{item.img_url}}" background-size="cover"></image>
+      <image src="{{item.path}}" background-size="cover"></image>
     </swiper-item>
   </swiper>
   <view class="service-policy">
@@ -12,7 +12,7 @@
   <view class="goods-info">
     <view class="c">
       <text class="name">{{goods.name}}</text>
-      <text class="desc">{{goods.goods_brief}}</text>
+      <text class="desc">{{goods.remark}}</text>
       <text class="price">￥{{goods.price}}</text>
       <view class="brand" wx:if="{{brand.name}}">
         <navigator url="../brandDetail/brandDetail?id={{brand.brandId}}">
@@ -62,7 +62,7 @@
   <view class="goods-attr">
     <view class="t">商品参数</view>
     <view class="l">
-      <view class="item" wx:for="{{attribute}}" wx:key="{{item.name}}">
+      <view class="item" wx:for="{{attribute}}" wx:key="{{item.id}}">
         <text class="left">{{item.name}}</text>
         <text class="right">{{item.price}}</text>
       </view>

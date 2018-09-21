@@ -20,8 +20,8 @@
             <text class="line"></text>
         </view>
         <view class="bd">
-            <navigator url="/pages/category/category?id={{item.id}}" class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{currentCategory.subCategoryList}}">
-                <image class="icon" src="{{item.wap_banner_url}}"></image>
+            <navigator url="/pages/category/category?id={{item.id}}" class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{categoryGoods}}">
+                <image class="icon" src='/static/images/wxpay.png'></image>
                 <text class="txt">{{item.name}}</text>
             </navigator>
         </view>

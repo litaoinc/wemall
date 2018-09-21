@@ -5,7 +5,7 @@ Page({
   data: {
     navList: [],
     categoryList: [],
-    currentCategory: {},
+    categoryGoods: [],
     scrollLeft: 0,
     scrollTop: 0,
     goodsCount: 0,
@@ -21,26 +21,19 @@ Page({
       title: '加载中...',
     });
     util.request(api.CatalogList).then(function (res) {
-      console.error(res.data)
         that.setData({
           navList: res.data.items,
           currentCategory: res.data.currentCategory
         });
         wx.hideLoading();
       });
-    // util.request(api.GoodsCount).then(function (res) {
-    //   that.setData({
-    //     goodsCount: res.data.goodsCount
-    //   });
-    // });
-
   },
   getCurrentCategory: function (id) {
     let that = this;
-    util.request(api.CatalogCurrent, { id: id })
+    util.request(api.CatalogCurrent+id)
       .then(function (res) {
         that.setData({
-          currentCategory: res.data.currentCategory
+          categoryGoods: res.data.items
         });
       });
   },
@@ -67,11 +60,7 @@ Page({
   },
   switchCate: function (event) {
     var that = this;
-    var currentTarget = event.currentTarget;
-    if (this.data.currentCategory.id == event.currentTarget.dataset.id) {
-      return false;
-    }
-
-    this.getCurrentCategory(event.currentTarget.dataset.id);
+    var currentTarget = event.currentTarget.dataset.index;
+    this.getCurrentCategory(that.data.navList[currentTarget]._id);
   }
 })
